@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple responsive landing page for BYTE Arithmatrix task.">
+    <title>Landing Page - BYTE SZA 2026</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0b1020 0%, #111827 40%, #1f2937 100%);
+            color: #e5eefb;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 18px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #7dd3fc;
+            letter-spacing: 0.08em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 26px;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 90px 6% 70px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 36px;
+        }
+
+        .hero-text {
+            text-align: left;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(125, 211, 252, 0.12);
+            border: 1px solid rgba(125, 211, 252, 0.35);
+            color: #bae6fd;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.08;
+            margin-bottom: 18px;
+            color: #f8fbff;
+        }
+
+        .hero p {
+            max-width: 560px;
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn,
+        .secondary-btn {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #38bdf8, #2563eb);
+            color: #fff;
+            box-shadow: 0 16px 30px rgba(37, 99, 235, 0.35);
+        }
+
+        .secondary-btn {
+            background: rgba(148, 163, 184, 0.1);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            color: #e2e8f0;
+        }
+
+        .cta-btn:hover,
+        .secondary-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .dashboard-card {
+            width: min(100%, 380px);
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.85));
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 24px 50px rgba(15, 23, 42, 0.6);
+            padding: 24px;
+        }
+
+        .mini-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        .dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dots span:nth-child(1) { background: #f87171; }
+        .dots span:nth-child(2) { background: #fbbf24; }
+        .dots span:nth-child(3) { background: #4ade80; }
+
+        .chart-box {
+            height: 180px;
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.18), rgba(125, 211, 252, 0.06));
+            border: 1px solid rgba(125, 211, 252, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-box::before {
+            content: "";
+            position: absolute;
+            inset: 18px 18px 16px 18px;
+            background: linear-gradient(180deg, rgba(125, 211, 252, 0.22), rgba(59, 130, 246, 0.05));
+            border-radius: 14px;
+            clip-path: polygon(0% 80%, 20% 65%, 38% 70%, 58% 35%, 76% 52%, 100% 15%, 100% 100%, 0% 100%);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .stat {
+            padding: 14px 12px;
+            border-radius: 14px;
+            background: rgba(148, 163, 184, 0.08);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            text-align: center;
+        }
+
+        .stat strong {
+            display: block;
+            color: #f8fbff;
+            font-size: 1.2rem;
+        }
+
+        .stat span {
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+
+        .features {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 6% 80px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 8px;
+            color: #f8fbff;
+        }
+
+        .section-title p {
+            color: #94a3b8;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 20px;
+            padding: 28px 20px;
+            box-shadow: 0 20px 30px rgba(15, 23, 42, 0.2);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(125, 211, 252, 0.6);
+        }
+
+        .icon {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            margin-bottom: 18px;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(139, 92, 246, 0.2));
+            border: 1px solid rgba(125, 211, 252, 0.3);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #f8fbff;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            color: #b6c2d3;
+        }
+
+        .gallery {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 6% 80px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        .gallery-item {
+            border-radius: 22px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            background: rgba(15, 23, 42, 0.7);
+            box-shadow: 0 20px 30px rgba(15, 23, 42, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 32px rgba(59, 130, 246, 0.2);
+        }
+
+        .gallery-item img {
+            display: block;
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            z-index: 50;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 18px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.55);
+        }
+
+        .lightbox-content p {
+            margin-top: 12px;
+            color: #e2e8f0;
+            font-size: 0.96rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -14px;
+            right: -8px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 1.7rem;
+            color: white;
+            background: rgba(15, 23, 42, 0.8);
+            cursor: pointer;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 60px;
+                text-align: center;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <div class="logo">BYTE.SZA</div>
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Features</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <div class="hero-badge">Future-ready digital experiences</div>
+            <h1>Build Your Tech Expertise</h1>
+            <p>Develop, deploy, and scale modern web applications with a clean, fast, and impactful digital presence.</p>
+            <div class="hero-actions">
+                <button class="cta-btn" onclick="alert('Get Started Clicked!')">Get Started</button>
+                <button class="secondary-btn">Learn More</button>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="dashboard-card">
+                <div class="mini-header">
+                    <span>Performance</span>
+                    <div class="dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="chart-box"></div>
+                <div class="stats">
+                    <div class="stat">
+                        <strong>92%</strong>
+                        <span>Growth</span>
+                    </div>
+                    <div class="stat">
+                        <strong>24k</strong>
+                        <span>Users</span>
+                    </div>
+                    <div class="stat">
+                        <strong>4.9</strong>
+                        <span>Rating</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="section-title">
+            <h2>Why Choose Us</h2>
+            <p>Everything you need to create a bold and memorable digital experience.</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="icon">⚡</div>
+                <h3>Responsive</h3>
+                <p>Layout adjusts seamlessly across mobile, tablet, and desktop views.</p>
+            </div>
+            <div class="card">
+                <div class="icon">🎯</div>
+                <h3>Interactive</h3>
+                <p>Includes hover states, active controls, and clean dynamic styling.</p>
+            </div>
+            <div class="card">
+                <div class="icon">🚀</div>
+                <h3>Modern</h3>
+                <p>Built with a premium look that feels professional and polished.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="section-title">
+            <h2>Our Work</h2>
+            <p>Klik gambar untuk melihat versi full size.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Workspace with laptop" data-caption="Modern workspace setup">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Code editor screen" data-caption="Clean code and modern development">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Team discussion" data-caption="Collaboration leads to innovation">
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox" aria-label="Image preview">
+        <div class="lightbox-content">
+            <span class="close-btn" id="closeLightbox" aria-label="Close image">&times;</span>
+            <img id="lightboxImage" src="" alt="Full size preview">
+            <p id="lightboxCaption"></p>
+        </div>
+    </div>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const closeLightbox = document.getElementById('closeLightbox');
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                lightboxImage.src = item.src;
+                lightboxImage.alt = item.alt;
+                lightboxCaption.textContent = item.dataset.caption || item.alt;
+                lightbox.classList.add('open');
+            });
+        });
+
+        closeLightbox.addEventListener('click', () => {
+            lightbox.classList.remove('open');
+        });
+
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) {
+                lightbox.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
