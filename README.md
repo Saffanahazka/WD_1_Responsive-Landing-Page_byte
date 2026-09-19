@@ -20,3 +20,4 @@ A responsive product/service landing page built with HTML and CSS. The page incl
 ## Notes
 This project is prepared for local preview and deployment. A public GitHub repository and live demo link require publishing from a GitHub account or hosting platform outside this local workspace.
 "# WD_1_Responsive-Landing-Page_byte" 
+"# WD_1_Responsive-Landing-Page_byte" 
